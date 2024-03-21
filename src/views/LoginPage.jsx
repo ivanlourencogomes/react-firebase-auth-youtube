@@ -7,14 +7,15 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [loginType, setLoginType] = useState("login");
   const [userCredentials, setUserCredentials] = useState({});
+  const [error, setError] = useState("");
 
   const handleCredentials = (e) => {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
-    console.log(userCredentials);
   };
 
   const handleSignUp = (e) => {
     e.preventDefault();
+    setError("");
 
     createUserWithEmailAndPassword(
       auth,
@@ -24,15 +25,10 @@ function LoginPage() {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
-        // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        // ..
+        setError(errorMessage);
       });
   };
   return (
@@ -87,6 +83,18 @@ function LoginPage() {
               >
                 Sign Up
               </button>
+            )}
+
+            {/* Error container */}
+            {error && (
+              <div className="error">
+                {error}
+
+                {/* Will use below code to set custom error message}
+                {error.includes(
+                  "invalid-email" && <p>Please enter a valid email</p>
+                )} */}
+              </div>
             )}
 
             <p className="forgot-password">Forgot Password?</p>
