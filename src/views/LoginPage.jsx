@@ -3,6 +3,7 @@ import { useState } from "react";
 import { auth } from "../firebase/config.js";
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -54,6 +55,12 @@ function LoginPage() {
         const errorMessage = error.message;
         setError(errorMessage);
       });
+  };
+
+  const handlePasswordReset = () => {
+    const email = prompt("Please Enter Your Email");
+    sendPasswordResetEmail(auth, email);
+    alert("Email sent! Check your inbox for password reset instructions");
   };
 
   return (
@@ -127,7 +134,9 @@ function LoginPage() {
               </div>
             )}
 
-            <p className="forgot-password">Forgot Password?</p>
+            <p onClick={handlePasswordReset} className="forgot-password">
+              Forgot Password?
+            </p>
           </form>
         </section>
       </div>
