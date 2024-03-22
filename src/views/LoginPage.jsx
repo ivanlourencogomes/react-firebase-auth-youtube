@@ -6,8 +6,11 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/usersSlice.js";
 
 function LoginPage() {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [loginType, setLoginType] = useState("login");
   const [userCredentials, setUserCredentials] = useState({});
@@ -30,6 +33,12 @@ function LoginPage() {
         // What to do when user successfully Signs up
         const user = userCredential.user;
         console.log(user);
+        dispatch(
+          setUser({
+            id: userCredential.user.uid,
+            email: userCredential.user.email,
+          })
+        );
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -50,6 +59,12 @@ function LoginPage() {
         // what to do when user successfully logs in
         const user = userCredential.user;
         console.log(user);
+        dispatch(
+          setUser({
+            id: userCredential.user.uid,
+            email: userCredential.user.email,
+          })
+        );
       })
       .catch((error) => {
         const errorMessage = error.message;
