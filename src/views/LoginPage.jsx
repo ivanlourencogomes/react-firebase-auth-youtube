@@ -3,6 +3,7 @@ import { useState } from "react";
 import { auth } from "../firebase/config.js";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
@@ -16,6 +17,21 @@ function LoginPage() {
   const [userCredentials, setUserCredentials] = useState({});
   const [error, setError] = useState("");
 
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // when user is logged/signed in
+      dispatch(
+        setUser({
+          id: user.uid,
+          email: user.email,
+        })
+      );
+    } else {
+      // when user logs out set state back to null
+      dispatch(setUser(null));
+    }
+  });
+
   const handleCredentials = (e) => {
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
   };
@@ -28,22 +44,10 @@ function LoginPage() {
       auth,
       userCredentials.email,
       userCredentials.password
-    )
-      .then((userCredential) => {
-        // What to do when user successfully Signs up
-        const user = userCredential.user;
-        console.log(user);
-        dispatch(
-          setUser({
-            id: userCredential.user.uid,
-            email: userCredential.user.email,
-          })
-        );
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage);
-      });
+    ).catch((error) => {
+      const errorMessage = error.message;
+      setError(errorMessage);
+    });
   };
 
   const handleLogin = (e) => {
@@ -54,22 +58,10 @@ function LoginPage() {
       auth,
       userCredentials.email,
       userCredentials.password
-    )
-      .then((userCredential) => {
-        // what to do when user successfully logs in
-        const user = userCredential.user;
-        console.log(user);
-        dispatch(
-          setUser({
-            id: userCredential.user.uid,
-            email: userCredential.user.email,
-          })
-        );
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage);
-      });
+    ).catch((error) => {
+      const errorMessage = error.message;
+      setError(errorMessage);
+    });
   };
 
   const handlePasswordReset = () => {
