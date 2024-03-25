@@ -9,6 +9,8 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/usersSlice.js";
+import googleLogo from "../assets/google.png";
+import facebookLogo from "../assets/facebook.png";
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -30,7 +32,7 @@ function LoginPage() {
       // when user logs out set state back to null
       dispatch(setUser(null));
     }
-    if(isLoading){
+    if (isLoading) {
       setIsLoading(false);
     }
   });
@@ -95,6 +97,29 @@ function LoginPage() {
               Signup
             </button>
           </div>
+          <div className="social-options">
+            <h3>Continue With</h3>
+            <div className="buttons">
+              <button className="google">
+                <img
+                  src={googleLogo}
+                  alt="google logo"
+                  className="google-img"
+                />
+                <span>Google</span>
+              </button>
+              <button className="facebook">
+                <img
+                  src={facebookLogo}
+                  alt="facebook logo"
+                  className="facebook-img"
+                />
+                <span>Facebook</span>
+              </button>
+            </div>
+            <div className="line"></div>
+          </div>
+
           <form className="add-form login">
             <div className="form-control">
               <label>Email *</label>

@@ -55,7 +55,8 @@ body {
 
 /* form input */
 
-input:not([type="checkbox"]), textarea {
+input:not([type="checkbox"]),
+textarea {
   border-color: #dfdfdf;
   background-color: #fdfcfb;
   color: #393939;
@@ -84,7 +85,6 @@ textarea {
 .add-form {
   margin-top: 40px;
 }
-
 
 .form-control {
   margin: 20px 0;
@@ -174,7 +174,7 @@ input:focus {
 }
 
 .container a.active button.btn,
-.container .btn.active    {
+.container .btn.active {
   background: #1cab47;
   color: #fff;
 }
@@ -384,7 +384,7 @@ table tr th {
   align-items: center;
 }
 
-.single-book .book-details input[type=checkbox] {
+.single-book .book-details input[type="checkbox"] {
   width: 20px;
   height: 20px;
   margin-right: 6px;
@@ -409,9 +409,7 @@ table tr th {
     padding-left: 0;
     margin-top: 20px;
   }
-
 }
-
 
 .single-book .book-cover img {
   max-width: 100%;
@@ -434,13 +432,12 @@ table tr th {
   cursor: pointer;
 }
 
-
 .notes .note {
   background-color: #fff;
   margin-bottom: 12px;
   padding: 18px;
   border-radius: 4px;
-  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
@@ -468,10 +465,6 @@ table tr th {
   text-align: left;
 }
 
-
-
-
-
 @media (max-width: 768px) {
   .books-list {
     grid-template-columns: 1fr 1fr;
@@ -484,7 +477,6 @@ table tr th {
   }
 }
 
-
 .login-page {
   height: 100vh;
   display: flex;
@@ -492,7 +484,8 @@ table tr th {
   justify-content: center;
 }
 
-.login-page h1, p {
+.login-page h1,
+p {
   text-align: center;
 }
 
@@ -502,7 +495,96 @@ table tr th {
 
 .login-page .login-type {
   text-align: center;
+}
 
+.social-options {
+  text-align: center;
+  width: 600px;
+}
+
+.social-options h3 {
+  font-weight: 500;
+  margin: 15px 0 10px;
+}
+
+.social-options .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 15px;
+}
+
+.social-options .buttons button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 50%;
+  font-weight: 700;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.social-options .buttons .google {
+  border: 1px solid #cacaca;
+  background: #fff;
+}
+
+.google-img,
+.facebook-img {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+.social-options .buttons .google img {
+  height: 25px;
+  width: 25px;
+  object-fit: cover;
+}
+
+.social-options .buttons .google span {
+  font-weight: 500;
+  color: #222;
+}
+
+.social-options .buttons .facebook {
+  color: #fff;
+  background-color: #0171d3;
+  border: none;
+}
+
+.facebook-img {
+  height: 30px;
+  width: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background-color: #222;
+  margin: 30px 0;
+}
+
+.line::before {
+  content: "OR";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #faf8f2;
+  padding: 0 15px;
 }
 
 .login-page .add-form.login {
@@ -518,18 +600,18 @@ table tr th {
 
 .login-page p.forgot-password {
   margin-top: 12px;
-  color: #0000EE;
+  color: #0000ee;
   text-decoration: underline;
   font-size: 14px;
   cursor: pointer;
 }
 
-.login-page.container button.btn.selected    {
+.login-page.container button.btn.selected {
   background: #3e3e3e;
   color: #fff;
 }
 
-.login-page.container button.btn.login    {
+.login-page.container button.btn.login {
   background: #3e3e3e;
   color: #fff;
 }
