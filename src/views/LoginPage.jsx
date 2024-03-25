@@ -12,7 +12,7 @@ import { setUser } from "../store/usersSlice.js";
 
 function LoginPage() {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [loginType, setLoginType] = useState("login");
   const [userCredentials, setUserCredentials] = useState({});
   const [error, setError] = useState("");
@@ -29,6 +29,9 @@ function LoginPage() {
     } else {
       // when user logs out set state back to null
       dispatch(setUser(null));
+    }
+    if(isLoading){
+      setIsLoading(false);
     }
   });
 
